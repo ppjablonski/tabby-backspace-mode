@@ -1,4 +1,4 @@
-import { Component, ComponentRef, Injectable, ViewChild, ViewContainerRef } from '@angular/core'
+import { Component, ComponentRef, Inject, Injectable, ViewChild, ViewContainerRef } from '@angular/core'
 
 /** Original settings component of the local provider, captured before it is replaced. */
 @Injectable({ providedIn: 'root' })
@@ -23,7 +23,7 @@ export class LocalBackspaceSettingsComponent {
     @ViewChild('host', { read: ViewContainerRef, static: true }) host!: ViewContainerRef
     private inner?: ComponentRef<any>
 
-    constructor (private original: OriginalLocalSettings) { }
+    constructor (@Inject(OriginalLocalSettings) private original: OriginalLocalSettings) { }
 
     ngOnInit (): void {
         if (this.original.type) {

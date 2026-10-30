@@ -19,7 +19,7 @@ export default class BackspaceModeModule {
     // provider is extended in memory instead of patching Tabby.
     constructor (
         @Inject(ProfileProvider) providers: ProfileProvider<any>[],
-        original: OriginalLocalSettings,
+        @Inject(OriginalLocalSettings) original: OriginalLocalSettings,
     ) {
         const local = providers.find(p => p.id === 'local')
         if (!local || local.settingsComponent === LocalBackspaceSettingsComponent) {
