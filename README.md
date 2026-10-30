@@ -8,7 +8,7 @@ SSH, Telnet and Serial profiles, to **local** profiles (cmd, PowerShell, WSL, Gi
 Open **Settings > Profiles & connections**, edit a local profile (or *Defaults for Local
 terminal* to cover every local profile), open the **Input** tab and pick a mode under
 **Backspace key mode**.
-The change applies to the next keypress; no tab restart needed.
+The change applies to tabs opened afterwards (an already open tab keeps the defaults it was opened with).
 
 | Mode | Sent on Backspace |
 |------|-------------------|
@@ -19,6 +19,9 @@ The change applies to the next keypress; no tab restart needed.
 
 The modes and bytes match Tabby's own SSH implementation (`InputProcessor` in `tabby-terminal`).
 The default leaves input unchanged, so installing the plugin alone changes nothing.
+Changes apply to tabs opened afterwards. Tabby's built-in profiles (WSL, PowerShell, ...) cannot be
+edited directly; set the mode in **Profiles & connections > Advanced > Local terminal**
+(default settings for all local profiles) or duplicate a profile first.
 
 ## How it works
 
