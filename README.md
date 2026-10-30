@@ -6,7 +6,8 @@ SSH, Telnet and Serial profiles, to **local** profiles (cmd, PowerShell, WSL, Gi
 ## Usage
 
 Open **Settings > Profiles & connections**, edit a local profile (or *Defaults for Local
-terminal* to cover every local profile) and pick a mode under **Backspace key mode**.
+terminal* to cover every local profile), open the **Input** tab and pick a mode under
+**Backspace key mode**.
 The change applies to the next keypress; no tab restart needed.
 
 | Mode | Sent on Backspace |
@@ -24,8 +25,9 @@ The default leaves input unchanged, so installing the plugin alone changes nothi
 - Input: a `TerminalDecorator` adds a session middleware to tabs of `local` profiles
   (the same mechanism Tabby's ZModem and auto-sudo features use).
 - Settings: Tabby's profile editor has no extension slot, so at startup the plugin
-  wraps the in-memory `settingsComponent` of the `local` profile provider and adds
-  `options.input.backspace` to its `configDefaults`. Tabby itself is not modified.
+  replaces the in-memory `settingsComponent` of the `local` profile provider with a copy of
+  Tabby's form that has the extra Input tab, and adds `options.input.backspace` to its
+  `configDefaults`. The copy has to be kept in sync with `tabby-local` by hand. Tabby itself is not modified.
   This relies on internals, so a future Tabby release may break the settings UI
   (the input handling uses public APIs).
 

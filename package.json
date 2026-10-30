@@ -1,8 +1,9 @@
 {
   "name": "tabby-backspace-mode",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Adds the \"Backspace key mode\" option to local (non-SSH) profiles in Tabby.",
   "license": "MIT",
+  "author": "tabby-backspace-mode contributors",
   "keywords": [
     "tabby-plugin",
     "tabby",
@@ -25,6 +26,7 @@
     "@angular/compiler": "^15.2.10",
     "@angular/core": "15.2.10",
     "@angular/forms": "15.2.10",
+    "@ng-bootstrap/ng-bootstrap": "14.2.0",
     "@types/node": "18.19.130",
     "rxjs": "7.8.2",
     "tabby-core": "1.0.231-nightly.0",

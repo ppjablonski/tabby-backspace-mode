@@ -8,6 +8,8 @@ import path from 'node:path'
 test('module extends the local provider and leaves others alone', () => {
     const stubs: Record<string, any> = {
         'tabby-core': { __esModule: true, default: class {}, ProfileProvider: class {} },
+        '@ng-bootstrap/ng-bootstrap': { NgbModule: class {} },
+        'tabby-local': { __esModule: true, default: class {}, UACService: class {} },
         'tabby-terminal': { __esModule: true, default: class {}, TerminalDecorator: class { }, SessionMiddleware: class {} },
     }
     const load = (Module as any)._load
@@ -22,13 +24,11 @@ test('module extends the local provider and leaves others alone', () => {
     const original = class {}
     const local: any = { id: 'local', settingsComponent: original, configDefaults: { options: { cwd: null } } }
     const ssh: any = { id: 'ssh', settingsComponent: original, configDefaults: {} }
-    const holder: any = { type: null }
-    new Plugin([ssh, local], holder)
+    new Plugin([ssh, local])
     assert.notEqual(local.settingsComponent, original)
-    assert.equal(holder.type, original)
     assert.deepEqual(local.configDefaults.options.input, { backspace: 'backspace' })
     assert.equal(ssh.settingsComponent, original)
-    // Idempotent: a second run must not capture our own wrapper as "original".
-    new Plugin([local], holder)
-    assert.equal(holder.type, original)
+    const ours = local.settingsComponent
+    new Plugin([local])
+    assert.equal(local.settingsComponent, ours)
 })
