@@ -3,6 +3,11 @@
 Tabby plugin that adds the **Backspace key mode** option, which Tabby only offers for
 SSH, Telnet and Serial profiles, to **local** profiles (cmd, PowerShell, WSL, Git Bash, ...).
 
+## Install
+
+In Tabby open **Settings > Plugins**, search for `backspace-mode`, install and restart Tabby.
+Manual installation and removal: [INSTALL.md](INSTALL.md).
+
 ## Usage
 
 Open **Settings > Profiles & connections**, edit a local profile (or *Defaults for Local
@@ -49,6 +54,7 @@ other modes, though they share the same code path. See [INSTALL.md](INSTALL.md) 
 npm install
 npm test          # builds, then runs unit tests
 npm run package   # release/*.zip and release/*.tgz
+npm publish       # runs the tests first (prepublishOnly)
 ```
 
 MIT licensed.
