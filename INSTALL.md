@@ -6,7 +6,7 @@
 2. Open the plugins folder: `%APPDATA%\tabby\plugins`
    (the button name in Settings > Plugins was not checked against the Tabby source).
    Portable Tabby: `data\plugins` next to the executable.
-3. Unzip `tabby-backspace-mode-0.1.3-windows.zip` into that folder. The result must be:
+3. Unzip `tabby-backspace-mode-0.1.4-windows.zip` into that folder. The result must be:
    ```
    plugins\node_modules\tabby-backspace-mode\package.json
    plugins\node_modules\tabby-backspace-mode\dist\index.js

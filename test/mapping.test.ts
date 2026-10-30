@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { mapBackspace, normalizeMode, isTargetProfile } from '../src/mapping'
+import { mapBackspace, normalizeMode, isTargetProfile, resolveMode, INHERIT_MODE } from '../src/mapping'
 
 const DEL = Buffer.from([0x7f])
 
@@ -39,4 +39,14 @@ test('only local profiles are targeted', () => {
         assert.equal(isTargetProfile({ type }), false)
     }
     assert.equal(isTargetProfile(null), false)
+})
+
+test('resolveMode: explicit profile mode wins, otherwise inherit local defaults', () => {
+    assert.equal(resolveMode('ctrl-h', 'delete'), 'ctrl-h')
+    assert.equal(resolveMode('backspace', 'delete'), 'backspace')
+    assert.equal(resolveMode(INHERIT_MODE, 'delete'), 'delete')
+    assert.equal(resolveMode(undefined, 'ctrl-h'), 'ctrl-h')
+    assert.equal(resolveMode(INHERIT_MODE, undefined), 'backspace')
+    assert.equal(resolveMode(INHERIT_MODE, INHERIT_MODE), 'backspace')
+    assert.equal(resolveMode('junk', 'junk'), 'backspace')
 })

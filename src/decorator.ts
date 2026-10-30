@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core'
 import { ConfigService } from 'tabby-core'
 import { BaseSession, BaseTerminalTabComponent, TerminalDecorator } from 'tabby-terminal'
 import { BackspaceModeMiddleware } from './middleware'
-import { isTargetProfile } from './mapping'
+import { isTargetProfile, resolveMode } from './mapping'
 
 @Injectable()
 export class BackspaceModeDecorator extends TerminalDecorator {
@@ -23,14 +23,21 @@ export class BackspaceModeDecorator extends TerminalDecorator {
         })
     }
 
+    private modeFor (tab: BaseTerminalTabComponent<any>) {
+        return resolveMode(
+            tab.profile.options?.input?.backspace,
+            this.config.store.profileDefaults?.local?.options?.input?.backspace,
+        )
+    }
+
     private bind (tab: BaseTerminalTabComponent<any>, session: BaseSession|null): void {
         if (!session || this.handled.has(session)) {
             return
         }
         this.handled.add(session)
-        session.middleware.push(new BackspaceModeMiddleware(() => tab.profile.options?.input?.backspace))
+        session.middleware.push(new BackspaceModeMiddleware(() => this.modeFor(tab)))
         console.log('[tabby-backspace-mode] attached, profile:', tab.profile.id, tab.profile.name,
-            'mode:', tab.profile.options?.input?.backspace,
+            'profile value:', tab.profile.options?.input?.backspace, 'resolved:', this.modeFor(tab),
             'local defaults:', JSON.stringify(this.config.store.profileDefaults?.local?.options?.input))
     }
 }

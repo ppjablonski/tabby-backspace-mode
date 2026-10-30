@@ -32,7 +32,7 @@ test('module extends the local provider and leaves others alone', () => {
     const ssh: any = { id: 'ssh', settingsComponent: original, configDefaults: {} }
     new Plugin([ssh, local])
     assert.notEqual(local.settingsComponent, original)
-    assert.deepEqual(local.configDefaults.options.input, { backspace: 'backspace' })
+    assert.deepEqual(local.configDefaults.options.input, { backspace: 'inherit' })
     assert.equal(ssh.settingsComponent, original)
     // Built-in profiles must not carry an explicit mode, or they would ignore the global defaults.
     assert.equal('input' in local.optionsFromShell({ command: 'wsl.exe' }), false)

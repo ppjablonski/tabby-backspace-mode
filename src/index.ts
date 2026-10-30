@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import LocalModule from 'tabby-local'
 import TerminalModule, { TerminalDecorator } from 'tabby-terminal'
 import { BackspaceModeDecorator } from './decorator'
+import { INHERIT_MODE } from './mapping'
 import { LocalInputSettingsComponent } from './settings.component'
 
 @NgModule({
@@ -28,7 +29,7 @@ export default class BackspaceModeModule {
         }
         const defaults = local.configDefaults as any
         defaults.options ??= {}
-        defaults.options.input ??= { backspace: 'backspace' }
+        defaults.options.input ??= { backspace: INHERIT_MODE }
         local.settingsComponent = LocalInputSettingsComponent
         // optionsFromShell spreads configDefaults.options into every built-in profile (WSL, PowerShell, ...).
         // An explicit mode there would override the user's "Defaults for Local terminal", so drop it.
