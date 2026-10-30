@@ -24,6 +24,6 @@ export class BackspaceModeDecorator extends TerminalDecorator {
         }
         this.handled.add(session)
         session.middleware.push(new BackspaceModeMiddleware(() => tab.profile.options?.input?.backspace))
-        console.log('[tabby-backspace-mode] attached, mode:', tab.profile.options?.input?.backspace)
+        console.log('[tabby-backspace-mode] attached, profile:', tab.profile.id, tab.profile.name, 'mode:', tab.profile.options?.input?.backspace)
     }
 }

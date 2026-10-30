@@ -30,5 +30,14 @@ export default class BackspaceModeModule {
         defaults.options ??= {}
         defaults.options.input ??= { backspace: 'backspace' }
         local.settingsComponent = LocalInputSettingsComponent
+        // optionsFromShell spreads configDefaults.options into every built-in profile (WSL, PowerShell, ...).
+        // An explicit mode there would override the user's "Defaults for Local terminal", so drop it.
+        const optionsFromShell = (local as any).optionsFromShell?.bind(local)
+        if (optionsFromShell) {
+            (local as any).optionsFromShell = (shell: any) => {
+                const { input, ...options } = optionsFromShell(shell)
+                return options
+            }
+        }
     }
 }
