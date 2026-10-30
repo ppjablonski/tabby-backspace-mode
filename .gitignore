@@ -6,3 +6,4 @@ release/
 *.tgz
 *.zip
 .env
+CLAUDE.md
