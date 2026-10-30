@@ -1,6 +1,6 @@
 {
   "name": "tabby-backspace-mode",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Adds the \"Backspace key mode\" option to local (non-SSH) profiles in Tabby.",
   "license": "MIT",
   "author": "tabby-backspace-mode contributors",

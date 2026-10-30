@@ -19,7 +19,8 @@ The change applies to tabs opened afterwards (an already open tab keeps the defa
 
 The modes and bytes match Tabby's own SSH implementation (`InputProcessor` in `tabby-terminal`).
 The default leaves input unchanged, so installing the plugin alone changes nothing.
-Changes apply to tabs opened afterwards. Tabby's built-in profiles (WSL, PowerShell, ...) cannot be
+Changes apply to tabs opened afterwards. A tab restored from the previous session keeps the
+settings it was saved with, so close old tabs (or turn off `recoverTabs`) after changing the mode or updating the plugin. Tabby's built-in profiles (WSL, PowerShell, ...) cannot be
 edited directly; set the mode in **Profiles & connections > Advanced > Local terminal**
 (default settings for all local profiles) or duplicate a profile first.
 
@@ -36,10 +37,11 @@ edited directly; set the mode in **Profiles & connections > Advanced > Local ter
 
 ## Supported versions
 
-Built against Tabby **1.0.238** (source reviewed at master `467ce8e`). The `tabby-*`
-type packages on npm only go up to 1.0.231-nightly.0, which is what it was compiled with.
-See [INSTALL.md](INSTALL.md) for installation. Verified automatically: mapping logic and
-module wiring against stubs. Not verified: the real Tabby UI and shells (see INSTALL.md checklist).
+Built against Tabby **1.0.238** (source reviewed at tag `v1.0.238`). The `tabby-*` type packages
+on npm only go up to 1.0.231-nightly.0, which is what it was compiled with.
+Verified on Windows, Tabby 1.0.238, built-in WSL / Debian profile with Ctrl-H set in
+Advanced > Local terminal. Not verified: other local profiles (cmd, PowerShell, Git Bash) and the
+other modes, though they share the same code path. See [INSTALL.md](INSTALL.md) for installation.
 
 ## Development
 

@@ -6,7 +6,7 @@
 2. Open the plugins folder: `%APPDATA%\tabby\plugins`
    (the button name in Settings > Plugins was not checked against the Tabby source).
    Portable Tabby: `data\plugins` next to the executable.
-3. Unzip `tabby-backspace-mode-0.1.4-windows.zip` into that folder. The result must be:
+3. Unzip `tabby-backspace-mode-0.1.5-windows.zip` into that folder. The result must be:
    ```
    plugins\node_modules\tabby-backspace-mode\package.json
    plugins\node_modules\tabby-backspace-mode\dist\index.js
@@ -31,7 +31,6 @@
 
 ## If it has no effect in a profile
 
-Open DevTools in Tabby (Ctrl+Shift+I), Console tab, then open a new tab of that profile.
-`[tabby-backspace-mode] attached, mode: ...` means the plugin is wired to that session and
-shows the mode it read. Test **Delete (CSI 3~)** too: if only Ctrl-H fails on Windows, the
-likely cause is ConPTY re-encoding `0x08` (not confirmed).
+Tabs restored from the previous session keep the profile they were saved with, including an
+older Backspace mode. Close all tabs, quit Tabby completely, start it and open a **new** tab
+from the `+` menu. Changing the mode in Advanced > Local terminal also only affects new tabs.
